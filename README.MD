@@ -2,10 +2,16 @@
 
 ## Usage examples
 
-Create a faker generator :
+First, create a faker generator :
 ```javascript
 const faker = require("./faker");
 const fk = faker.create("fr_FR");
+or 
+const fk = faker.create("en_EN");
+or
+const fk = faker.create("animals");
+or
+const fk = faker.create(); // default "fr_FR" if locale is not defined
 ```
 Then, get a random french firstname :
 ```javascript
@@ -21,7 +27,7 @@ fk.getFake("month"); // output : "Février"
 ```
 Get a random french day :
 ```javascript
-fk.getFake("day"); // output : "Février"
+fk.getFake("day"); // output : "Mercredi"
 ```
 
 ## Need more datas ?
