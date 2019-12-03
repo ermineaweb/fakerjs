@@ -1,0 +1,30 @@
+const faker = require("../src");
+const VALID_LOCALE = "fr_FR";
+const INVALID_LOCALE = "invalid_locale";
+const VALID_ATTRIBUTE = "firstname.js";
+const INVALID_ATTRIBUTE = "invalid_attribute";
+const fk = faker.create(VALID_LOCALE);
+
+test("getFake() must return a random string", () => {
+    expect(fk.getFake(VALID_ATTRIBUTE)).toMatch(/\b[^\d\W]+\b/);
+    expect(fk.getFake(VALID_ATTRIBUTE)).not.toBeUndefined();
+    expect(fk.getFake(VALID_ATTRIBUTE)).not.toBeNull();
+});
+
+test("_getAttributes() return a list of files contained in /src/data/" + VALID_LOCALE, () => {
+    expect(fk._getAttributes()).toContain(VALID_ATTRIBUTE);
+});
+
+test("_isValidAttribute(attr) is true if attribute exist in /src/data/" + VALID_LOCALE, () => {
+    expect(fk._isValidAttribute(VALID_ATTRIBUTE)).toBeTruthy();
+    expect(fk._isValidAttribute(INVALID_ATTRIBUTE)).toBeFalsy();
+});
+
+test("_getLocales() return a list of folder contained in /src/data/", () => {
+    expect(fk._getLocales()).toContain(VALID_LOCALE);
+});
+
+test("_isValidLocale() is true if locale exist in /src", () => {
+    expect(fk._isValidLocale(VALID_LOCALE)).toBeTruthy();
+    expect(fk._isValidLocale(INVALID_LOCALE)).toBeFalsy();
+});

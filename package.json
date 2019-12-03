@@ -7,9 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "node": "nodemon ./app.js",
-    "dev": "concurrently -p \"[{name}]\" -n \"CSS,NODE\" -c \"cyan.bold,blue.bold\" \"npm:css\" \"npm:node\" "
+    "test": "jest --watch",
+    "node": "nodemon app.js",
+    "dev": "concurrently -p \"[{name}]\" -n \"TEST,NODE\" -c \"red.bold,blue.bold\" \"npm:test\" \"npm:node\" "
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/ermineaweb/fakerjs#readme",
   "devDependencies": {
+    "concurrently": "^5.0.0",
     "jest": "^24.9.0"
   }
 }

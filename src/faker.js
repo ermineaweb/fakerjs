@@ -7,13 +7,10 @@
 module.exports = class Faker {
 
     constructor(_locale = "bzh_FR") {
-        this._locale = _locale;
-
-        if (!this._isValidLocale()) {
+        if (!this._isValidLocale(_locale)) {
             throw new Error(`Invalid locale : '${this._locale}' does not exist.`);
         }
-
-        this._locales = this._getLocales();
+        this._locale = _locale;
     }
 
     /**
@@ -26,13 +23,10 @@ module.exports = class Faker {
      * @returns {*|string}
      */
     getFake(attribute) {
-        let attributes = "";
-
         if (!this._isValidAttribute(attribute)) {
-            throw new Error(`Invalid attribute : '${attribute}' is not a valid attribute. \n'${this._locale}' attributes are : \n${this._getAttributes()}`);
-        } else {
-            attributes = require(__dirname + "/data/" + this._locale + "/" + attribute);
+            throw new Error(`Invalid attribute : '${attribute}' is not a valid.\n'${this._locale}' attributes are : \n${this._getAttributes()}`);
         }
+        let attributes = require(__dirname + "/data/" + this._locale + "/" + attribute);
 
         return attributes[this._random(attributes.length)];
     }
@@ -84,8 +78,8 @@ module.exports = class Faker {
      * @returns {boolean}
      * @private
      */
-    _isValidLocale() {
-        return this._getLocales().includes(this._locale);
+    _isValidLocale(locale) {
+        return this._getLocales().includes(locale);
     }
 
     /**
