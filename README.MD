@@ -21,7 +21,7 @@ fk.getFake("month"); // output : "Février"
 ```
 Get a random french day :
 ```javascript
-fk.getFake("day"); // output : "Février"
+fk.getFake("day"); // output : "Mercredi"
 ```
 
 ## Todo, some ideas
