@@ -1,6 +1,6 @@
 # Faker Data Generator
 
-## Examples
+## Usage examples
 
 Create a faker generator :
 ```javascript
@@ -22,6 +22,25 @@ fk.getFake("month"); // output : "Février"
 Get a random french day :
 ```javascript
 fk.getFake("day"); // output : "Février"
+```
+
+## Need more datas ?
+
+1. Go in 'src/data/' folder
+2. You want some Models of car : create a 'cars' folder
+3. In the 'src/data/cars/' create the file 'model.js'
+4. In 'model.js', put :
+```javascript
+model.exports = [
+    "Renault",
+    "Peugeot",
+    "Toyota",
+];
+```
+5. You can generate your data :
+```javascript
+fk = faker.create("cars");
+fk.getFake("model"); // output : "Toyota"
 ```
 
 ## Todo, some ideas
