@@ -2,7 +2,7 @@
 
 ## Examples
 
-Create a faker generator :
+First, create a faker generator :
 ```javascript
 const faker = require("./faker");
 const fk = faker.create("fr_FR");
