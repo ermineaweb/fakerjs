@@ -31,7 +31,7 @@ module.exports = class Faker {
         if (!this._isValidAttribute(attribute)) {
             throw new Error(`Invalid attribute : '${attribute}' is not a valid attribute. \n'${this._locale}' attributes are : \n${this._getAttributes()}`);
         } else {
-            attributes = require(__dirname + "/locales/" + this._locale + "/" + attribute);
+            attributes = require(__dirname + "/data/" + this._locale + "/" + attribute);
         }
 
         return attributes[this._random(attributes.length)];
@@ -47,7 +47,7 @@ module.exports = class Faker {
      */
     _getAttributes() {
         const fs = require('fs');
-        return fs.readdirSync(__dirname + "/locales/" + this._locale);
+        return fs.readdirSync(__dirname + "/data/" + this._locale);
     }
 
     /**
@@ -66,14 +66,14 @@ module.exports = class Faker {
     /**
      * _getLocales()
      *
-     * Private function to get locales folder.
+     * Private function to get data folder.
      *
      * @returns {string[]}
      * @private
      */
     _getLocales() {
         const fs = require('fs');
-        return fs.readdirSync(__dirname + "/locales");
+        return fs.readdirSync(__dirname + "/data");
     }
 
     /**
