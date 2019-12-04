@@ -6,10 +6,10 @@
  */
 const Faker = require("./faker");
 
-const instance = new Faker();
+const instance = (locale) => new Faker(locale);
 
 const faker = {
-    create: () => instance,
+    create: (locale) => instance(locale),
 }
 
 module.exports = faker;

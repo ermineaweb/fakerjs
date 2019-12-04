@@ -7,10 +7,11 @@
 module.exports = class Faker {
 
     constructor(_locale = "bzh_FR") {
+        this._locale = _locale;
+
         if (!this._isValidLocale(_locale)) {
             throw new Error(`Invalid locale : '${this._locale}' does not exist.`);
         }
-        this._locale = _locale;
     }
 
     /**

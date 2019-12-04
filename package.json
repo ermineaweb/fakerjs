@@ -10,7 +10,7 @@
     "start": "node app.js",
     "test": "jest --watch",
     "node": "nodemon app.js",
-    "dev": "concurrently -p \"[{name}]\" -n \"TEST,NODE\" -c \"red.bold,blue.bold\" \"npm:test\" \"npm:node\" "
+    "dev": "concurrently -p \"[{name}]\" -n \"TEST,NODE\" -c \"green.bold,blue.bold\" \"npm:test --watch\" \"npm:node\" "
   },
   "repository": {
     "type": "git",
