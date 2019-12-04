@@ -6,11 +6,7 @@
  *
  * @type {string[]}
  */
-module.exports = [
-    "Pierre",
-    "Paul",
-    "Jacques",
-    "Alexandre",
-    "Marc",
-    "Georges",
-];
+const maleFirstname = require("./firstname-male");
+const femaleFirstname = require("./firstname-female");
+
+module.exports = maleFirstname.concat(femaleFirstname);

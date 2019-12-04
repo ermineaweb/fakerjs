@@ -24,8 +24,9 @@ module.exports = class Faker {
      * @returns {*|string}
      */
     getFake(attribute) {
+
         if (!this._isValidAttribute(attribute)) {
-            throw new Error(`Invalid attribute : '${attribute}' is not a valid.\n'${this._locale}' attributes are : \n${this._getAttributes()}`);
+            throw new Error(`Invalid attribute : '${attribute}' is not valid.\n'${this._locale}' attributes are : \n${this._getAttributes()}`);
         }
         let attributes = require(__dirname + "/data/" + this._locale + "/" + attribute);
 
@@ -42,7 +43,7 @@ module.exports = class Faker {
      */
     _getAttributes() {
         const fs = require('fs');
-        return fs.readdirSync(__dirname + "/data/" + this._locale);
+        return fs.readdirSync(__dirname + "/data/" + this._locale).map(f => f.replace(".js", ""));
     }
 
     /**

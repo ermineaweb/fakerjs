@@ -1,9 +1,11 @@
 const faker = require("../src");
+
 const VALID_LOCALE = "fr_FR";
 const INVALID_LOCALE = "invalid_locale";
-const VALID_ATTRIBUTE = "firstname.js";
+const VALID_ATTRIBUTE = "firstname";
 const INVALID_ATTRIBUTE = "invalid_attribute";
 const MAX_RANDOM = 1;
+
 const fk = faker.create(VALID_LOCALE);
 
 test("faker.create(locale) must throw an error if locale is not valid", () => {
