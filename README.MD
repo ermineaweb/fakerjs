@@ -9,7 +9,7 @@ const fk = faker.create("fr_FR");
 or 
 const fk = faker.create("en_EN");
 or
-const fk = faker.create("animals");
+const fk = faker.create("bzh_FR");
 or
 const fk = faker.create(); // default "fr_FR" if locale is not defined
 ```
@@ -30,12 +30,11 @@ Get a random french day :
 fk.getFake("day"); // output : "Mercredi"
 ```
 
-## Need more datas ?
+## Need more fake datas ?
 
 1. Go in 'src/data/' folder
-2. You want some Models of car : create a 'cars' folder
-3. In the 'src/data/cars/' create the file 'model.js'
-4. In 'model.js', put :
+2. You want some car's brand : create a 'cars' folder
+3. In the 'src/data/cars/' create the file 'brand.js' and put inside :
 ```javascript
 model.exports = [
     "Renault",
@@ -46,7 +45,7 @@ model.exports = [
 5. You can generate your data :
 ```javascript
 fk = faker.create("cars");
-fk.getFake("model"); // output : "Toyota"
+fk.getFake("brand"); // output : "Toyota"
 ```
 
 ## Todo, some ideas
