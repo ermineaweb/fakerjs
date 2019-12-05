@@ -1,7 +1,7 @@
 /**
  * Faker data generator
  * author : Romain Amichaud
- *
+ * 
  * @type {Faker}
  */
 module.exports = class Faker {
@@ -10,14 +10,16 @@ module.exports = class Faker {
         this._locale = _locale;
 
         if (!this._isValidLocale(_locale)) {
-            throw new Error(`Invalid locale : '${this._locale}' does not exist.`);
+            throw new Error(`\nInvalid locale : '${this._locale}' does not exist. Valids locales are :\n${this._getLocales()}\n`);
         }
     }
 
     /**
      * getFake()
      *
-     * Usage : faker.get(attribute)
+     * Usage : 
+     * fk = faker.create("fr_FR")
+     * fk.getFake(attribute)
      * Return a random value if 'locale' and 'attribute' variables are valids.
      *
      * @param attribute
@@ -28,37 +30,65 @@ module.exports = class Faker {
 
         switch (attribute) {
             case "money":
-                result = "money work";
                 result = this._money(options);
                 break;
 
             default:
                 /**
-                 * default return : we search in the /src/data/locale 
-                 * if we find 'attribute' file, we return a random value of this file
-                 * else, an error is throwing
+                 * default return : we search in the /src/data/[this._locale] 
                  */
-                if (!this._isValidAttribute(attribute)) {
-                    throw new Error(`Invalid attribute : '${attribute}' is not valid.\n'${this._locale}' attributes are : \n${this._getAttributes()}`);
-                }
-
-                const attributes = require(__dirname + "/data/" + this._locale + "/" + attribute);
-                result = attributes[Faker._randomNb(attributes.length)];
-
+                const fakes = this._getDatas(attribute);
+                result = fakes[this._randomNb(fakes.length)];
                 break;
         }
 
         return result;
     }
 
+    // TODO : finish this function
+    /**
+     * _money([min, max])
+     * 
+     * Private function, return a random amount of money between min and max,
+     * formatting with locales defined in /src/data/[this._locale]/locales.js
+     * 
+     * @param {*} param0 
+     */
     _money([min, max]) {
-        return a + b;
+        const locales = [];
+        try {
+            locales = this._getDatas("locales");
+        } catch {
+
+        }
+        const rndAmount = this._randomNb(max, min);
+        const fmtAmount = new Intl.NumberFormat(locales.locale, { style: "currency", currency: "EUR" }).format(rndAmount);
+
+        return fmtAmount;
+    }
+
+    /**
+     * _getDatas(attribute)
+     * 
+     * Private function, search the 'attribute' file in /src/data/[this._locale]/
+     * if the file not exist, throw an error,
+     * else, return file's content
+     * 
+     * @param {string} attribute 
+     * @returns {string[]}
+     * @private
+     */
+    _getDatas(attribute) {
+        if (!this._isValidAttribute(attribute)) {
+            throw new Error(`\nInvalid attribute : '${attribute}' is not valid.\n'${this._locale}' valids attributes are : \n${this._getAttributes()}\n`);
+        }
+        return require(__dirname + "/data/" + this._locale + "/" + attribute);
     }
 
     /**
      * _getAttributes()
      *
-     * Private function to get attributes files in the 'locale' folder.
+     * Private function to get attributes files in the 'this._locale' folder.
      *
      * @returns {string[]}
      * @private
@@ -71,7 +101,7 @@ module.exports = class Faker {
     /**
      * _isValidAttribute()
      *
-     * Private function to check if the 'attribute' variable exist in 'locale' folder.
+     * Private function to check if the 'attribute' variable exist in 'this._locale' folder.
      *
      * @param attribute
      * @returns {boolean}
@@ -117,7 +147,7 @@ module.exports = class Faker {
      * @returns {number}
      * @private
      */
-    static _randomNb(max, min = 0) {
+    _randomNb(max, min = 0) {
         return Math.floor(Math.random() * (max - min) + min);
     }
 

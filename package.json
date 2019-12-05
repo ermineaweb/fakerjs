@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --watch",
-    "start": "nodemon app.js",
+    "start": "node app.js",
+    "test ": "jest --watch",
+    "node": "nodemon app.js",
     "dev": "concurrently --kill-others -p \"[{name}~{time}]\" -t \"HH:mm\" -n \"TEST,NODE\" -c \"green.bold,blue.bold\" \"npm:test --watch\" \"npm:node\" "
   },
   "repository": {
