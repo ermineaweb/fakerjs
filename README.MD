@@ -1,5 +1,15 @@
 # Faker Data Generator
 
+## Locales availables
+
+- en_EN
+- fr_FR
+- bzh_FR
+
+Todo
+- en_US
+
+
 ## Usage examples
 
 First, create a faker generator :
