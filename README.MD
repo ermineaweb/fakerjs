@@ -6,28 +6,36 @@ First, create a faker generator :
 ```javascript
 const faker = require("./faker");
 const fk = faker.create("fr_FR");
-or 
+// create a faker with french locale
+
 const fk = faker.create("en_EN");
-or
+// create a faker with english locale
+
 const fk = faker.create("bzh_FR");
-or
-const fk = faker.create(); // default "fr_FR" if locale is not defined
+// create a faker with brittany locale
+
+const fk = faker.create(); 
+// default "en_EN"
 ```
-Then, get a random french firstname :
+Then, get a random firstname :
 ```javascript
-fk.getFake("firstname"); // output : "Charles"
+fk.getFake("firstname"); 
+// output can be "Charles"
 ```
-Get a random french city :
+Get a random city :
 ```javascript
-fk.getFake("city"); // output : "Quimper"
+fk.getFake("city"); 
+// output can be "London"
 ```
-Get a random french month :
+Get a random month :
 ```javascript
-fk.getFake("month"); // output : "Février"
+fk.getFake("month"); 
+// output can be "February"
 ```
-Get a random french day :
+Get a random day :
 ```javascript
-fk.getFake("day"); // output : "Mercredi"
+fk.getFake("day"); 
+// output can be "Tuesday"
 ```
 
 ## Need more fake datas ?
@@ -36,16 +44,18 @@ fk.getFake("day"); // output : "Mercredi"
 2. You want some car's brand : create a 'cars' folder
 3. In the 'src/data/cars/' create the file 'brand.js' and put inside :
 ```javascript
-model.exports = [
+module.exports = [
     "Renault",
     "Peugeot",
     "Toyota",
+    "Tesla",
 ];
 ```
 5. You can generate your data :
 ```javascript
 fk = faker.create("cars");
-fk.getFake("brand"); // output : "Toyota"
+fk.getFake("brand"); 
+// output can be "Toyota"
 ```
 
 ## Todo, some ideas
@@ -54,10 +64,12 @@ fk.getFake("brand"); // output : "Toyota"
 
 Get a random french amount of money, between 10 € and 20 €
 ```javascript
-fk.getFake("money", 10, 20); // output : "16,00 €"
+fk.getFake("money", 10, 20); 
+// output can be "16,00 €"
 ```
 Get a random french amount of money, between 10 000 € and 20 000 €
 ```javascript
-fk.getFake("money", 10000, 20000); // output : "15 500,00 €"
+fk.getFake("money", 10000, 20000); 
+// output can be "15 500,00 €"
 ```
 

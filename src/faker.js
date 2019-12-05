@@ -6,7 +6,7 @@
  */
 module.exports = class Faker {
 
-    constructor(_locale = "bzh_FR") {
+    constructor(_locale = "en_EN") {
         this._locale = _locale;
 
         if (!this._isValidLocale(_locale)) {
@@ -23,14 +23,36 @@ module.exports = class Faker {
      * @param attribute
      * @returns {*|string}
      */
-    getFake(attribute) {
+    getFake(attribute, ...options) {
+        let result = "";
 
-        if (!this._isValidAttribute(attribute)) {
-            throw new Error(`Invalid attribute : '${attribute}' is not valid.\n'${this._locale}' attributes are : \n${this._getAttributes()}`);
+        switch (attribute) {
+            case "money":
+                result = "money work";
+                result = this._money(options);
+                break;
+
+            default:
+                /**
+                 * default return : we search in the /src/data/locale 
+                 * if we find 'attribute' file, we return a random value of this file
+                 * else, an error is throwing
+                 */
+                if (!this._isValidAttribute(attribute)) {
+                    throw new Error(`Invalid attribute : '${attribute}' is not valid.\n'${this._locale}' attributes are : \n${this._getAttributes()}`);
+                }
+
+                const attributes = require(__dirname + "/data/" + this._locale + "/" + attribute);
+                result = attributes[Faker._randomNb(attributes.length)];
+
+                break;
         }
-        let attributes = require(__dirname + "/data/" + this._locale + "/" + attribute);
 
-        return attributes[this._random(attributes.length)];
+        return result;
+    }
+
+    _money([min, max]) {
+        return a + b;
     }
 
     /**
@@ -85,16 +107,18 @@ module.exports = class Faker {
     }
 
     /**
-     * _random()
+     * _randomNb(max, min)
      *
-     * Private function to get a random number between 0 and 'max'.
+     * Static private function to get a random number between 'min' and 'max'.
+     * 'min' = 0 if not precised
      *
+     * @param min
      * @param max
      * @returns {number}
      * @private
      */
-    _random(max) {
-        return Math.floor(Math.random() * (max));
+    static _randomNb(max, min = 0) {
+        return Math.floor(Math.random() * (max - min) + min);
     }
 
 }
