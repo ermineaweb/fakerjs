@@ -2,14 +2,12 @@
  * Faker data generator
  * author : Romain Amichaud
  *
- * Singleton factory
+ * Faker factory
  */
 const Faker = require("./faker");
 
-const instance = (locale) => new Faker(locale);
+const factory = {
+    create: (locale) => new Faker(locale),
+};
 
-const faker = {
-    create: (locale) => instance(locale),
-}
-
-module.exports = faker;
+module.exports = factory;

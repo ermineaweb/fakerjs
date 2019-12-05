@@ -1,8 +1,8 @@
 {
-  "name": "faker",
+  "name": "erminea.faker",
   "version": "1.0.0",
   "description": "faker data generator",
-  "main": "app.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
