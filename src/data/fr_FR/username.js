@@ -10,9 +10,10 @@ function generateUsernames() {
     let usernames = [];
 
     for (let i = 0; i < 200; i++) {
-        firstname = firstnames[randomizer.randNumber(nbFirstnames)].toLowerCase();
-        lastname = lastnames[randomizer.randNumber(nbLastnames)].toLowerCase();
+        let firstname = firstnames[randomizer.randNumber(nbFirstnames)].toLowerCase();
+        let lastname = lastnames[randomizer.randNumber(nbLastnames)].toLowerCase();
         switch (randomizer.randNumber(5, 1)) {
+
             case 1:
                 // pau45
                 username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
@@ -44,7 +45,9 @@ function generateUsernames() {
                 break;
         }
 
-        usernames.push(username);
+        if (!usernames.includes(username)) {
+            usernames.push(username);
+        }
     }
 
     return usernames;

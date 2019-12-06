@@ -42,8 +42,7 @@ module.exports = class Faker {
 
             default:
                 // we search in the /src/data/[this._locale]
-                const fakes = this._getDatas(attribute);
-                result = fakes[randomizer.randNumber(fakes.length)];
+                result = this._getDatas(attribute);
                 break;
         }
 
@@ -91,7 +90,8 @@ module.exports = class Faker {
         if (!this._isValidAttribute(attribute)) {
             throw new Error(`\nInvalid attribute : '${attribute}' is not valid.\n'${this._locale}' valids attributes are : \n${this._getAttributes()}\n`);
         }
-        return require(__dirname + "/../data/" + this._locale + "/" + attribute);
+        const resultat = require(__dirname + "/../data/" + this._locale + "/" + attribute);
+        return resultat();
     }
 
     /**
