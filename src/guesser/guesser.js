@@ -29,6 +29,14 @@ module.exports = class Guesser {
      */
     static guess(name) {
         switch (name) {
+            case "color":
+            case "couleur":
+                return "color";
+
+            case "product":
+            case "produit":
+                return "product";
+
             case "firstname":
             case "prenom":
                 return "firstname";
@@ -42,11 +50,11 @@ module.exports = class Guesser {
             case "identity":
                 return "name";
 
+            case "username":
             case "login":
             case "logon":
-            case "username":
             case "pseudo":
-                return "login";
+                return "username";
 
             case "email":
             case "mail":

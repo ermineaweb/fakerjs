@@ -6,18 +6,7 @@
  *
  * @type {string[]}
  */
-
-/**
- * randomNb()
- *
- * @param max
- * @param min
- * @returns {number}
- */
-function randomNb(max, min = 0) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
+const Randomizer = require("../../randomizer");
 /**
  * generateZips()
  *
@@ -30,12 +19,12 @@ function generateZips() {
 
     for (let i = 0; i < 500; i++) {
         // first number of french zip code is 0 to 9
-        let first = randomNb(9);
+        let first = Randomizer.randNumber(9);
         // second number is 0 to 9, but 0 to 5 if first number is 9
-        let second = first == 9 ? randomNb(5) : randomNb(9);
-        let thirst = randomNb(9);
-        let fourth = randomNb(9);
-        let fifth = randomNb(9);
+        let second = first == 9 ? Randomizer.randNumber(5) : Randomizer.randNumber(9);
+        let thirst = Randomizer.randNumber(9);
+        let fourth = Randomizer.randNumber(9);
+        let fifth = Randomizer.randNumber(9);
 
         let zip = [first, second, thirst, fourth, fifth].join("");
 

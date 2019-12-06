@@ -1,3 +1,6 @@
+const guesser = require("../guesser");
+const randomizer = require("../randomizer");
+
 /**
  * Faker data generator
  * author : Romain Amichaud
@@ -27,8 +30,7 @@ module.exports = class Faker {
      * @returns {*|string}
      */
     getFake(attribute, ...options) {
-        const Guesser = require("../guesser");
-        attribute = Guesser.guess(attribute);
+        attribute = guesser.guess(attribute);
 
         let result = "";
 
@@ -37,10 +39,11 @@ module.exports = class Faker {
                 result = this._money(options);
                 break;
 
+
             default:
                 // we search in the /src/data/[this._locale]
                 const fakes = this._getDatas(attribute);
-                result = fakes[this._randomNb(fakes.length)];
+                result = fakes[randomizer.randNumber(fakes.length)];
                 break;
         }
 
@@ -64,7 +67,7 @@ module.exports = class Faker {
         } catch {
             throw new Error(`\nLocales configuration does not exist in /src/data/${this._locale}\n`);
         }
-        const rndAmount = this._randomNb(max, min);
+        const rndAmount = randomizer.randNumber(max, min);
         const fmtAmount = new Intl.NumberFormat(locales.locale, {
             style: "currency",
             currency: "EUR"
@@ -140,21 +143,6 @@ module.exports = class Faker {
      */
     _isValidLocale(locale) {
         return this._getLocales().includes(locale);
-    }
-
-    /**
-     * _randomNb(max, min)
-     *
-     * Static private function to get a random number between 'min' and 'max'.
-     * 'min' = 0 if not precised
-     *
-     * @param min
-     * @param max
-     * @returns {number}
-     * @private
-     */
-    _randomNb(max, min = 0) {
-        return Math.floor(Math.random() * (max - min) + min);
     }
 
 };
