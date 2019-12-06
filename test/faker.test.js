@@ -16,15 +16,6 @@ test("faker.create(locale) must throw an error if locale is not valid", () => {
     }).not.toThrow();
 });
 
-test("_getDatas(attribute) return the content of the file : src/data/LOCALE/attribute", () => {
-    expect(fk._getDatas(VALID_ATTRIBUTE))
-        .toBeInstanceOf(Array);
-
-    expect(() => {
-        fk._getDatas(INVALID_ATTRIBUTE);
-    }).toThrow();
-});
-
 test("getFake(attribute) return a random string, throw an Error if attribute is not valid", () => {
     expect(fk.getFake(VALID_ATTRIBUTE))
         .toMatch(/\b[^\d\W]+\b/);

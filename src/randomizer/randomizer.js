@@ -1,3 +1,12 @@
+/**
+ * Faker data generator
+ * author : Romain Amichaud
+ *
+ * Class Randomizer
+ * regroup static methods to get random values
+ *
+ * @type {Randomizer}
+ */
 module.exports = class Randomizer {
 
     static randNumber(max, min = 0) {

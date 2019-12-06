@@ -1,56 +1,42 @@
-const randomizer = require("../../randomizer");
-const firstnames = require("./firstname");
-const lastnames = require("./lastname");
-
-function generateUsernames() {
-    const nbFirstnames = firstnames.length;
-    const nbLastnames = lastnames.length;
-    const MIN_CHAR = 1;
+module.exports = () => {
+    const randomizer = require("../../randomizer");
+    const firstname = require("./firstname")();
+    const lastname = require("./lastname")();
+    const MIN_CHAR = 3;
     let username = "";
-    let usernames = [];
 
-    for (let i = 0; i < 200; i++) {
-        let firstname = firstnames[randomizer.randNumber(nbFirstnames)].toLowerCase();
-        let lastname = lastnames[randomizer.randNumber(nbLastnames)].toLowerCase();
-        switch (randomizer.randNumber(5, 1)) {
-
-            case 1:
-                // pau45
-                username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
-                    randomizer.randNumber(1000);
-                break;
-            case 2:
-                // paualu45
-                username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
-                    lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR)) +
-                    randomizer.randNumber(1000);
-                break;
-            case 3:
-                // pau.alu45
-                username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
-                    "." +
-                    lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR)) +
-                    randomizer.randNumber(1000);
-                break;
-            case 4:
-                // paualu
-                username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
-                    lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR));
-                break;
-            case 5:
-                // pau.alu
-                username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
-                    "." +
-                    lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR));
-                break;
-        }
-
-        if (!usernames.includes(username)) {
-            usernames.push(username);
-        }
+    switch (randomizer.randNumber(5)) {
+        case 0:
+            // pau45
+            username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
+                randomizer.randNumber(1000);
+            break;
+        case 1:
+            // paublu45
+            username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
+                lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR)) +
+                randomizer.randNumber(1000);
+            break;
+        case 2:
+            // pau.blu45
+            username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
+                "." +
+                lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR)) +
+                randomizer.randNumber(1000);
+            break;
+        case 3:
+            // paublu
+            username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
+                lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR));
+            break;
+        case 4:
+            // pau.blu
+            username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
+                "." +
+                lastname.slice(0, randomizer.randNumber(lastname.length, MIN_CHAR));
+            break;
     }
 
-    return usernames;
-}
-
-module.exports = generateUsernames();
+    // we have to replace accents and bads characters from the username
+    return username.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};

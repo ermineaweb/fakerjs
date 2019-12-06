@@ -1,8 +1,12 @@
-module.exports = [
-    'Alsace', 'Aquitaine', 'Auvergne', 'Bourgogne', 'Bretagne', 'Centre', 'Champagne-Ardenne',
+module.exports = () => {
+    const randomizer = require("../../randomizer");
+    const regions = [
+        'Alsace', 'Aquitaine', 'Auvergne', 'Bourgogne', 'Bretagne', 'Centre', 'Champagne-Ardenne',
         'Corse', 'Franche-Comté', 'Île-de-France', 'Languedoc-Roussillon', 'Limousin',
         'Lorraine', 'Midi-Pyrénées', 'Nord-Pas-de-Calais', 'Basse-Normandie', 'Haute-Normandie',
         'Pays-de-Loire', 'Picardie', 'Poitou-Charentes', "Provence-Alpes-Côte d'Azur", 'Rhone-Alpes',
         'Guadeloupe', 'Martinique', 'Guyane', 'Réunion', 'Saint-Pierre-et-Miquelon', 'Mayotte',
         'Saint-Barthélémy', 'Saint-Martin', 'Wallis-et-Futuna', 'Polynésie française', 'Nouvelle-Calédonie',
-];
+    ];
+    return regions[randomizer.randNumber(regions.length)];
+};

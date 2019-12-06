@@ -1,5 +1,4 @@
 const guesser = require("../guesser");
-const randomizer = require("../randomizer");
 
 /**
  * Faker data generator
@@ -23,7 +22,7 @@ module.exports = class Faker {
      * Usage :
      * fk = faker.create("fr_FR")
      * fk.getFake(attribute)
-     * Return a random value if 'locale' and 'attribute' variables are valids.
+     * Return a random value if 'locale' and 'attribute' variables exists.
      *
      * @param attribute
      * @param options
@@ -31,67 +30,16 @@ module.exports = class Faker {
      */
     getFake(attribute, ...options) {
         attribute = guesser.guess(attribute);
-
-        let result = "";
-
-        switch (attribute) {
-            case "money":
-                result = this._money(options);
-                break;
-
-
-            default:
-                // we search in the /src/data/[this._locale]
-                result = this._getDatas(attribute);
-                break;
-        }
-
-        return result;
-    }
-
-
-    // TODO : finir la fonction money
-    /**
-     * _money([min, max])
-     *
-     * Private function, return a random amount of money between min and max,
-     * formatting with locales defined in /src/data/[this._locale]/locales.js
-     *
-     * @param {*} param0
-     */
-    _money([min, max]) {
-        let locales;
-        try {
-            locales = this._getDatas("locales");
-        } catch {
-            throw new Error(`\nLocales configuration does not exist in /src/data/${this._locale}\n`);
-        }
-        const rndAmount = randomizer.randNumber(max, min);
-        const fmtAmount = new Intl.NumberFormat(locales.locale, {
-            style: "currency",
-            currency: "EUR"
-        }).format(rndAmount);
-
-        return fmtAmount;
-    }
-
-    /**
-     * _getDatas(attribute)
-     *
-     * Private function, search the 'attribute' file in /src/data/[this._locale]/
-     * if the file not exist, throw an error,
-     * else, return file's content
-     *
-     * @param {string} attribute
-     * @returns {string[]}
-     * @private
-     */
-    _getDatas(attribute) {
         if (!this._isValidAttribute(attribute)) {
             throw new Error(`\nInvalid attribute : '${attribute}' is not valid.\n'${this._locale}' valids attributes are : \n${this._getAttributes()}\n`);
         }
-        const resultat = require(__dirname + "/../data/" + this._locale + "/" + attribute);
-        return resultat();
+        const result = require(__dirname + "/../data/" + this._locale + "/" + attribute);
+        return result();
+    }
+
+    _money([min, max]) {
+        // TODO : finir la fonction money
+        return max;
     }
 
     /**
