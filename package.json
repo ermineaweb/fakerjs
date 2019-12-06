@@ -1,7 +1,7 @@
 {
   "name": "erminea-fakerjs",
   "version": "1.0.0",
-  "description": "faker data generator",
+  "description": "faker data generator for testing, fixtures, and mock",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -18,8 +18,12 @@
   },
   "keywords": [
     "faker",
+    "fake",
+    "random",
     "data",
-    "generator"
+    "generator",
+    "fixtures",
+    "mock"
   ],
   "author": "romain amichaud",
   "license": "ISC",

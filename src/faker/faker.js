@@ -1,7 +1,7 @@
 /**
  * Faker data generator
  * author : Romain Amichaud
- * 
+ *
  * @type {Faker}
  */
 module.exports = class Faker {
@@ -17,15 +17,19 @@ module.exports = class Faker {
     /**
      * getFake()
      *
-     * Usage : 
+     * Usage :
      * fk = faker.create("fr_FR")
      * fk.getFake(attribute)
      * Return a random value if 'locale' and 'attribute' variables are valids.
      *
      * @param attribute
+     * @param options
      * @returns {*|string}
      */
     getFake(attribute, ...options) {
+        const Guesser = require("../guesser");
+        attribute = Guesser.guess(attribute);
+
         let result = "";
 
         switch (attribute) {
@@ -34,9 +38,7 @@ module.exports = class Faker {
                 break;
 
             default:
-                /**
-                 * default return : we search in the /src/data/[this._locale] 
-                 */
+                // we search in the /src/data/[this._locale]
                 const fakes = this._getDatas(attribute);
                 result = fakes[this._randomNb(fakes.length)];
                 break;
@@ -45,36 +47,40 @@ module.exports = class Faker {
         return result;
     }
 
-    // TODO : finish this function
+
+    // TODO : finir la fonction money
     /**
      * _money([min, max])
-     * 
+     *
      * Private function, return a random amount of money between min and max,
      * formatting with locales defined in /src/data/[this._locale]/locales.js
-     * 
-     * @param {*} param0 
+     *
+     * @param {*} param0
      */
     _money([min, max]) {
-        const locales = [];
+        let locales;
         try {
             locales = this._getDatas("locales");
         } catch {
-
+            throw new Error(`\nLocales configuration does not exist in /src/data/${this._locale}\n`);
         }
         const rndAmount = this._randomNb(max, min);
-        const fmtAmount = new Intl.NumberFormat(locales.locale, { style: "currency", currency: "EUR" }).format(rndAmount);
+        const fmtAmount = new Intl.NumberFormat(locales.locale, {
+            style: "currency",
+            currency: "EUR"
+        }).format(rndAmount);
 
         return fmtAmount;
     }
 
     /**
      * _getDatas(attribute)
-     * 
+     *
      * Private function, search the 'attribute' file in /src/data/[this._locale]/
      * if the file not exist, throw an error,
      * else, return file's content
-     * 
-     * @param {string} attribute 
+     *
+     * @param {string} attribute
      * @returns {string[]}
      * @private
      */
@@ -82,7 +88,7 @@ module.exports = class Faker {
         if (!this._isValidAttribute(attribute)) {
             throw new Error(`\nInvalid attribute : '${attribute}' is not valid.\n'${this._locale}' valids attributes are : \n${this._getAttributes()}\n`);
         }
-        return require(__dirname + "/data/" + this._locale + "/" + attribute);
+        return require(__dirname + "/../data/" + this._locale + "/" + attribute);
     }
 
     /**
@@ -95,7 +101,7 @@ module.exports = class Faker {
      */
     _getAttributes() {
         const fs = require('fs');
-        return fs.readdirSync(__dirname + "/data/" + this._locale).map(f => f.replace(".js", ""));
+        return fs.readdirSync(__dirname + "/../data/" + this._locale).map(f => f.replace(".js", ""));
     }
 
     /**
@@ -121,7 +127,7 @@ module.exports = class Faker {
      */
     _getLocales() {
         const fs = require('fs');
-        return fs.readdirSync(__dirname + "/data");
+        return fs.readdirSync(__dirname + "/../data");
     }
 
     /**
@@ -151,4 +157,4 @@ module.exports = class Faker {
         return Math.floor(Math.random() * (max - min) + min);
     }
 
-}
+};
