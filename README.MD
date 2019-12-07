@@ -1,85 +1,64 @@
 # Faker Data Generator
 
+Inspired by [Faker zaninotto](https://github.com/fzaninotto/Faker).
+
+
 ## Locales availables
 
-- en_EN
+- en_US
 - fr_FR
 - bzh_FR
 
-Todo
-- en_US
 
+## Usage
 
-## Usage examples
+Install
+```
+npm install erminea-faker
+```
 
 First, create a faker generator :
 ```javascript
 const faker = require("./faker");
 const fk = faker.create("fr_FR");
-// create a faker with french locale
+// create a faker with french locales
 
-const fk = faker.create("en_EN");
-// create a faker with english locale
+const fk = faker.create("en_US");
+// create a faker with us locales
 
 const fk = faker.create("bzh_FR");
-// create a faker with brittany locale
+// create a faker with brittany locales
 
 const fk = faker.create(); 
-// default "en_EN"
+// default "fr_FR"
 ```
 Then, get a random firstname :
 ```javascript
 fk.getFake("firstname"); 
 // output can be "Charles"
 ```
-Get a random city :
-```javascript
-fk.getFake("city"); 
-// output can be "London"
+
+
+## Providers availables
+
 ```
-Get a random month :
-```javascript
-fk.getFake("month"); 
-// output can be "February"
-```
-Get a random day :
-```javascript
-fk.getFake("day"); 
-// output can be "Tuesday"
+username
+firstname (male, female, mix)
+lastname
+mail
+job
+city
+street
+zipcode
+region
+country
+month
+day
 ```
 
-## Need more fake datas ?
 
-1. Go in 'src/data/' folder
-2. You want some car's brand : create a 'cars' folder
-3. In the 'src/data/cars/' create the file 'brand.js' and put inside :
-```javascript
-module.exports = [
-    "Renault",
-    "Peugeot",
-    "Toyota",
-    "Tesla",
-];
-```
-5. You can generate your data :
-```javascript
-fk = faker.create("cars");
-fk.getFake("brand"); 
-// output can be "Toyota"
-```
+## The guesser
 
-## Todo, some ideas
-
-#### Money
-
-Get a random french amount of money, between 10 € and 20 €
-```javascript
-fk.getFake("money", 10, 20); 
-// output can be "16,00 €"
-```
-Get a random french amount of money, between 10 000 € and 20 000 €
-```javascript
-fk.getFake("money", 10000, 20000); 
-// output can be "15 500,00 €"
-```
-
+If you don't know precisely the name of the provider, try some words.
+Example :
+login, logon, pseudo, username

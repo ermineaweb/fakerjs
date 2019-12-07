@@ -2,7 +2,7 @@ const guesser = require("../guesser");
 
 class Faker {
 
-    constructor(_locale = "en_EN") {
+    constructor(_locale = "fr_FR") {
         this._locale = _locale;
 
         if (!this._isValidLocale(_locale)) {
@@ -29,11 +29,6 @@ class Faker {
         }
         const result = require(__dirname + "/../providers/" + this._locale + "/" + attribute);
         return result();
-    }
-
-    _money([min, max]) {
-        // TODO : finir la fonction money
-        return max;
     }
 
     /**
@@ -89,4 +84,4 @@ class Faker {
 
 }
 
-module.exports =  Faker;
+module.exports = Faker;
