@@ -5,7 +5,7 @@ module.exports = () => {
     const MIN_CHAR = 2;
     let username = "";
 
-    switch (randomizer.randNumber(8)) {
+    switch (randomizer.randNumber(9)) {
         case 0:
             // pau45
             username = firstname.slice(0, randomizer.randNumber(firstname.length, MIN_CHAR)) +
@@ -42,7 +42,7 @@ module.exports = () => {
             // paupau456
             username = firstname.slice(0, 3) + firstname.slice(0, 3) + randomizer.randNumber(100);
             break;
-        case 7:
+        case 8:
             // paupau
             username = firstname.slice(0, 3) + firstname.slice(0, 3);
             break;
