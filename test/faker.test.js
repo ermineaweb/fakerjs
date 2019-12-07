@@ -31,12 +31,12 @@ test("getFake(attribute) return a random string, throw an Error if attribute is 
     }).toThrow();
 });
 
-test("_getAttributes() return a list of files contained in /src/data/" + VALID_LOCALE, () => {
+test("_getAttributes() return a list of files contained in /src/providers/" + VALID_LOCALE, () => {
     expect(fk._getAttributes())
         .toContain(VALID_ATTRIBUTE);
 });
 
-test("_isValidAttribute(attr) is true if attribute exist in /src/data/" + VALID_LOCALE, () => {
+test("_isValidAttribute(attr) is true if attribute exist in /src/providers/" + VALID_LOCALE, () => {
     expect(fk._isValidAttribute(VALID_ATTRIBUTE))
         .toBeTruthy();
 
@@ -44,7 +44,7 @@ test("_isValidAttribute(attr) is true if attribute exist in /src/data/" + VALID_
         .toBeFalsy();
 });
 
-test("_getLocales() return a list of folder contained in /src/data/", () => {
+test("_getLocales() return a list of folder contained in /src/providers/", () => {
     expect(fk._getLocales())
         .toContain(VALID_LOCALE);
 });

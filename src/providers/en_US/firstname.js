@@ -1,5 +1,5 @@
 /**
- * Faker data generator
+ * Faker providers generator
  * author : Romain Amichaud
  *
  * French firstnames

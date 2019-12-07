@@ -1,12 +1,6 @@
 const guesser = require("../guesser");
 
-/**
- * Faker data generator
- * author : Romain Amichaud
- *
- * @type {Faker}
- */
-module.exports = class Faker {
+class Faker {
 
     constructor(_locale = "en_EN") {
         this._locale = _locale;
@@ -33,7 +27,7 @@ module.exports = class Faker {
         if (!this._isValidAttribute(attribute)) {
             throw new Error(`\nInvalid attribute : '${attribute}' is not valid.\n'${this._locale}' valids attributes are : \n${this._getAttributes()}\n`);
         }
-        const result = require(__dirname + "/../data/" + this._locale + "/" + attribute);
+        const result = require(__dirname + "/../providers/" + this._locale + "/" + attribute);
         return result();
     }
 
@@ -52,7 +46,7 @@ module.exports = class Faker {
      */
     _getAttributes() {
         const fs = require('fs');
-        return fs.readdirSync(__dirname + "/../data/" + this._locale).map(f => f.replace(".js", ""));
+        return fs.readdirSync(__dirname + "/../providers/" + this._locale).map(f => f.replace(".js", ""));
     }
 
     /**
@@ -71,14 +65,14 @@ module.exports = class Faker {
     /**
      * _getLocales()
      *
-     * Private function to get data folder.
+     * Private function to get providers folder.
      *
      * @returns {string[]}
      * @private
      */
     _getLocales() {
         const fs = require('fs');
-        return fs.readdirSync(__dirname + "/../data");
+        return fs.readdirSync(__dirname + "/../providers");
     }
 
     /**
@@ -93,4 +87,6 @@ module.exports = class Faker {
         return this._getLocales().includes(locale);
     }
 
-};
+}
+
+module.exports =  Faker;

@@ -1,10 +1,3 @@
-/**
- * Faker data generator
- * author : Romain Amichaud
- *
- * French male firstnames
- *
- */
 module.exports = () => {
     const randomizer = require("../../randomizer");
     const firstnames = [
@@ -18,4 +11,4 @@ module.exports = () => {
         'Thomas', 'Timothée', 'Tristan', 'Victor', 'Vincent', 'Xavier', 'Yves', 'Zacharie', 'Claude', 'Dominique'
     ];
     return firstnames[randomizer.randNumber(firstnames.length)];
-}
+};

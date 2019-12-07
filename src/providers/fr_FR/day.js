@@ -10,4 +10,4 @@ module.exports = () => {
         "Samedi",
     ];
     return days[randomizer.randNimber(days.length)];
-}
+};

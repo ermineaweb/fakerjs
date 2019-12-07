@@ -2,7 +2,7 @@ module.exports = () => {
     const randomizer = require("../../randomizer");
     const firstname = require("./firstname")();
     const lastname = require("./lastname")();
-    const MIN_CHAR = 3;
+    const MIN_CHAR = 1;
     let username = "";
 
     switch (randomizer.randNumber(5)) {

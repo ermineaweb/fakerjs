@@ -1,5 +1,5 @@
 /**
- * Faker data generator
+ * Faker providers generator
  * author : Romain Amichaud
  *
  * Class Guesser
@@ -12,7 +12,7 @@
  *
  * @type {Guesser}
  */
-module.exports = class Guesser {
+class Guesser {
 
     /**
      * guess(name)
@@ -100,4 +100,6 @@ module.exports = class Guesser {
 
     }
 
-};
+}
+
+module.exports = Guesser;

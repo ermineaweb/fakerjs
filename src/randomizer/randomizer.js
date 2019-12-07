@@ -1,5 +1,5 @@
 /**
- * Faker data generator
+ * Faker providers generator
  * author : Romain Amichaud
  *
  * Class Randomizer
@@ -7,7 +7,7 @@
  *
  * @type {Randomizer}
  */
-module.exports = class Randomizer {
+class Randomizer {
 
     static randNumber(max, min = 0) {
         if (max < min) {
@@ -16,4 +16,6 @@ module.exports = class Randomizer {
         return Math.floor(Math.random() * (max - min) + min);
     }
 
-};
+}
+
+module.exports = Randomizer;

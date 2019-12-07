@@ -1,0 +1,7 @@
+module.exports = () => {    
+    const randomizer = require("../../randomizer");    
+    const lastnames = [
+        'Haridon','Argol','Bannal','Berrien','Bolaz','Botmer','Brennil','Castar','Cleden','Poher','Pohen','Concar','Daoul','Croz','Dourn','Garlan','Gouez','Gourliz','Guillig','Guilv','Guimil','Guipav','Hanven','Henvican','Huelgot','Irvil','Kerglof','Kerlaz','Kerlon','Kernil','Kernok','Lampaul','Larnav','Landed','Landel','Landern','Landeven','Landivis','Landrevar','Landud','Landun','Langol','Langol','Lanneder','Laneuf','Lannilim','Lanrivoar','Folgoet','Lennon','Lesnev','Leuhan','Breval','Eguin','Locmar','Locquir','Loctul','Logonnal','Lopern','Loquerf','Mathal','Miliz','Penc','Peumer','Plaban','Plaban','Plobannal','Plogast','Plogauf','Plomod','Plouarz','Ploven','Plonev','Plouarn','Ploudal','Ploudan','Ploudir','Plouen','Plouesc','Plougast','Plougon','Plougourn','Plouhin','Ploumog','Plounev','Porspord','Poulder','Pouldrez','Primel','Reden','Roscanv','Rospord','Coulitz','Fregant','Goazec','Trolimoc','Thregon','Scrignam','Sibirim','Trebab','Treffiag','Treflaoun','Trefleven','Treganrant','Tregarv','Treglon','Treguen','Tremaouz','Trezilid',
+    ];
+    return lastnames[randomizer.randNumber(lastnames.length)];
+};
