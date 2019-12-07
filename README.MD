@@ -1,5 +1,6 @@
 # Faker Data Generator
 
+Faker data generator for testing, fixtures, and mock.
 Inspired by [Faker zaninotto](https://github.com/fzaninotto/Faker).
 
 

@@ -1,5 +1,5 @@
 {
-  "name": "erminea-fakerjs",
+  "name": "erminea-faker",
   "version": "1.0.0",
   "description": "faker data generator for testing, fixtures, and mock",
   "main": "index.js",
