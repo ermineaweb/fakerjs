@@ -1,5 +1,7 @@
-module.exports = [
-    'Abbott', 'Abernathy', 'Abshire', 'Adams', 'Altenwerth', 'Anderson', 'Ankunding', 'Armstrong', 'Auer', 'Aufderhar',
+module.exports = () => {
+    const randomizer = require("../../randomizer");
+    const lastnames = [
+        'Abbott', 'Abernathy', 'Abshire', 'Adams', 'Altenwerth', 'Anderson', 'Ankunding', 'Armstrong', 'Auer', 'Aufderhar',
         'Bahringer', 'Bailey', 'Balistreri', 'Barrows', 'Bartell', 'Bartoletti', 'Barton', 'Bashirian', 'Batz', 'Bauch', 'Baumbach', 'Bayer', 'Beahan', 'Beatty', 'Bechtelar', 'Becker', 'Bednar', 'Beer', 'Beier', 'Berge', 'Bergnaum', 'Bergstrom', 'Bernhard', 'Bernier', 'Bins', 'Blanda', 'Blick', 'Block', 'Bode', 'Boehm', 'Bogan', 'Bogisich', 'Borer', 'Bosco', 'Botsford', 'Boyer', 'Boyle', 'Bradtke', 'Brakus', 'Braun', 'Breitenberg', 'Brekke', 'Brown', 'Bruen', 'Buckridge',
         'Carroll', 'Carter', 'Cartwright', 'Casper', 'Cassin', 'Champlin', 'Christiansen', 'Cole', 'Collier', 'Collins', 'Conn', 'Connelly', 'Conroy', 'Considine', 'Corkery', 'Cormier', 'Corwin', 'Cremin', 'Crist', 'Crona', 'Cronin', 'Crooks', 'Cruickshank', 'Cummerata', 'Cummings',
         'Dach', 'D\'Amore', 'Daniel', 'Dare', 'Daugherty', 'Davis', 'Deckow', 'Denesik', 'Dibbert', 'Dickens', 'Dicki', 'Dickinson', 'Dietrich', 'Donnelly', 'Dooley', 'Douglas', 'Doyle', 'DuBuque', 'Durgan',
@@ -23,4 +25,6 @@ module.exports = [
         'Waelchi', 'Walker', 'Walsh', 'Walter', 'Ward', 'Waters', 'Watsica', 'Weber', 'Wehner', 'Weimann', 'Weissnat', 'Welch', 'West', 'White', 'Wiegand', 'Wilderman', 'Wilkinson', 'Will', 'Williamson', 'Willms', 'Windler', 'Wintheiser', 'Wisoky', 'Wisozk', 'Witting', 'Wiza', 'Wolf', 'Wolff', 'Wuckert', 'Wunsch', 'Wyman',
         'Yost', 'Yundt',
         'Zboncak', 'Zemlak', 'Ziemann', 'Zieme', 'Zulauf',
-];
+    ];
+    return lastnames[randomizer.randNumber(lastnames.length)];
+};

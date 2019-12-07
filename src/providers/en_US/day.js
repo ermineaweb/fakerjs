@@ -1,13 +1,13 @@
 module.exports = () => {
     const randomizer = require("../../randomizer");
     const days = [
-        "Dimanche",
-        "Lundi",
-        "Mardi",
-        "Mercredi",
-        "Jeudi",
-        "Vendredi",
-        "Samedi",
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
     ];
     return days[randomizer.randNumber(days.length)];
 };
